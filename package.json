@@ -1,0 +1,33 @@
+{
+  "name": "towerproperty",
+  "version": "1.0.0",
+  "description": "Land property consultancy company",
+  "main": "server.js",
+  "scripts": {
+    "dev": "babel-watch ./server/server.js",
+    "migrate": "sequelize db:migrate:undo:all && sequelize db:migrate && sequelize db:seed:all",
+    "db-seed": "sequelize db:seed:all",
+    "revert-seed": "sequelize db:seed:undo:all"
+  },
+  "keywords": [
+    "nodejs",
+    "consultancy",
+    "express"
+  ],
+  "author": "Moise1",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5",
+    "@babel/register": "^7.11.5",
+    "babel-watch": "^7.0.0",
+    "bcrypt": "^5.0.0",
+    "concurrently": "^5.3.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "pg": "^8.3.3",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.3.5",
+    "sequelize-cli": "^6.2.0"
+  }
+}
