@@ -7,7 +7,8 @@ module.exports = (sequelize, DataTypes) => {
    
     static associate(models) {
       // define associations here
-      this.belongsTo(models.User, {foreignKey: 'user_id', as: 'employee'})
+      
+      this.belongsTo(models.User, {foreignKey: 'userId'})
     }
   };
   Report.init({
@@ -17,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     institution: DataTypes.STRING,
     tpc_staff: DataTypes.STRING,
     inspection_date: DataTypes.DATE,
-    valuation_data: DataTypes.DATE,
+    valuation_date: DataTypes.DATE,
     company: DataTypes.STRING,
     purpose: DataTypes.STRING,
     valuer: DataTypes.STRING,
@@ -34,6 +35,8 @@ module.exports = (sequelize, DataTypes) => {
     printing: DataTypes.INTEGER,
     picked: DataTypes.BOOLEAN,
     comment: DataTypes.TEXT,
+    debts: DataTypes.INTEGER,
+    userId: DataTypes.INTEGER
 
   }, {
     sequelize,

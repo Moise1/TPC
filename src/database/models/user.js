@@ -7,13 +7,14 @@ module.exports = (sequelize, DataTypes) => {
     
     static associate(models) {
       // define associations here
-      this.hasMany(models.Report)
+      this.hasMany(models.Report, {as: 'reports', foreignKey: 'userId'})
     }
   };
   User.init({
     first_name: DataTypes.STRING,
     last_name: DataTypes.STRING,
     email: DataTypes.STRING,
+    role: DataTypes.STRING,
     password: DataTypes.STRING
   }, {
     sequelize,

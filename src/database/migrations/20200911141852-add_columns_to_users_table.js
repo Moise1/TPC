@@ -29,7 +29,7 @@ module.exports = {
     ])
   },
 
-  down: async (queryInterface, Sequelize) => {
+  down:  (queryInterface, Sequelize) => {
     return Promise.all([
       queryInterface.removeColumn('Users', 'last_name'),
       queryInterface.removeColumn('Users', 'email'),
