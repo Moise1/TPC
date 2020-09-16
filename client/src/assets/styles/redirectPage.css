@@ -1,0 +1,43 @@
+/* Mobile screen size */
+
+@media(max-width: 476px){
+    .redirect-container {
+        margin-top: 50%;
+    }
+    
+    .redirect-container .redirect-btn{
+        background-color: #1A5276;
+        outline: none;
+        border: none;
+    }
+    
+    .redirect-container .redirect-btn:focus{
+        outline: none;
+        border: none;
+        background-color: #1A5276;
+    
+    }
+}
+
+
+/* Desktop screen size */
+
+@media(min-width: 500px){
+    .redirect-container {
+        margin-top: 20%;
+        width: 30%;
+    }
+    
+    .redirect-container .redirect-btn{
+        background-color: #1A5276;
+        outline: none;
+        border: none;
+    }
+    
+    .redirect-container .redirect-btn:focus{
+        outline: none;
+        border: none;
+        background-color: #1A5276;
+    
+    }
+}

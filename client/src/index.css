@@ -1,13 +1,28 @@
-body {
+body{
+  padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Nanum Gothic', sans-serif;
+} 
+
+.circular-progress{
+  color: #1A5276;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.auth-btn{
+  background-color:#1A5276;
+  color: #fff;
 }
+.auth-btn:focus{
+  background-color:#1A5276;
+  color: #fff;
+}
+
+.auth-btn:hover{
+  background-color:#1A5276;
+  color: #fff;
+}
+
+#hot-display-license-info{
+  display: none;
+}
+

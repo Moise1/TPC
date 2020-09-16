@@ -4,8 +4,12 @@
   "description": "Land property consultancy company",
   "main": "server.js",
   "scripts": {
-    "dev": "babel-watch ./server/server.js",
-    "db-migrate": "sequelize db:migrate:undo:all && sequelize db:migrate &&  sequelize db:seed:undo:all && sequelize db:seed:all"
+    "db-migrate": "sequelize db:migrate:undo:all && sequelize db:migrate &&  sequelize db:seed:undo:all && sequelize db:seed:all",
+    "server": "babel-watch ./server/server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\"  \"npm run client \"",
+    "heroku-postbuild": "cd client && npm install && npm run build",
+    "prod": "npm run server"
   },
   "keywords": [
     "nodejs",

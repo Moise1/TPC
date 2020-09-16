@@ -1,0 +1,59 @@
+body{
+    padding: 0;
+    margin: 0;
+}
+.alternative-action .alternate-link {
+    text-decoration: none;
+    color: #1A5276;
+}
+
+
+
+/* Mobile Screen view */
+
+@media(max-width: 576px){
+    .signup-form {
+        margin-top: 70px;
+        border: 2px solid rgb(26, 82, 118);
+        border-radius: 15px;
+        padding: 10px 40px;
+        box-shadow: 0 8px 6px -6px rgb(26, 82, 118);
+    }
+     .text-input{
+        color: #fff;
+    }
+    
+    .snackbar{
+        margin-top: 62px;
+    
+    }
+
+    .signup-page{
+        height: 90vh;
+    }
+}
+
+/* Desktop screen-view */
+
+@media(min-width: 500px){
+    .snackbar{
+        margin-top: 70px;
+    }
+    .signup-form {
+        margin-top: 70px;
+        margin-bottom: 27px;
+        border: 2px solid rgb(26, 82, 118);
+        border-radius: 15px;
+        padding: 17px 100px;
+        box-shadow: 0 8px 6px -6px rgb(26, 82, 118);
+    
+    }
+     .text-input{
+        color: #fff;
+    }
+
+    .signup-page{
+        height: auto;
+    }
+}
+

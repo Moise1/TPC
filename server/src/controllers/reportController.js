@@ -29,7 +29,10 @@ class ReportController {
             }
 
         } catch (err) {
-            return res.status(500).json({ error: err.message });
+            if(err){
+                return res.status(500).json({ error: 'Internal Server Error' });
+
+            }
         }
     }
 }

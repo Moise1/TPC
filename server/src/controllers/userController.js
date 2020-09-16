@@ -1,30 +1,35 @@
 import models from '../database/models'
 import passwordManager from '../helpers/passwordManager'
 import { generateToken, decodeToken} from '../helpers/manageToken'
-import localStorage from 'localStorage';
 
 class UserController {
 
     static async signUp(req, res) {
         try {
-            const { first_name, last_name, email, password } = req.body;
+            
+            const {first_name, last_name, password, email} = req.body
             const hashedPassword = await passwordManager.encryptor(password, 10)
             const existingUser = await models.User.findOne({ where: { email } });
             const role = 'regular_staff';
             if (existingUser !== null) {
-                return res.status(409).json({ message: 'Sorry! Email already taken.' });
+                return res.status(409).json({ error: 'Sorry! Email already taken.' });
             } else {
-                const newUser = models.User.create({ first_name, last_name, email, password: hashedPassword, role });
+                const {dataValues} = await models.User.create({ first_name, email, last_name, password: hashedPassword, role });
                 const token = generateToken({
-                    email: newUser.id, first_name, last_name, email, role
+                    email: dataValues.id, first_name, last_name, email, role
                 });
-
-                localStorage.setItem('token', token);
-                return res.status(200).json({ message: 'You\'re successfully signed up.' })
+    
+                const data = {
+                    dataValues,
+                    token
+                }
+                return res.status(200).json({data})
             }
 
         } catch (err) {
-            return res.status(500).json({ message: err.message })
+            if(err){
+                return res.status(500).json({ error: 'Internal Server Error' })
+            }
         }
     }
 
@@ -32,25 +37,25 @@ class UserController {
 
         try {
             const { email, password } = req.body;
+
             const {dataValues} = await models.User.findOne({ where: { email } });
             if (dataValues === null) {
-                return res.status(404).json({ error: 'Sorry! User doesn\'t exist.' })
+                return res.status(404).json({ error: 'Sorry! User with this email doesn\'t exist.' })
             };
             const passwordMatch = await passwordManager.matchChecker(password, dataValues.password)
             if (!passwordMatch) {
                 return res.status(403).json({ error: 'Sorry! wrong password.' })
             };
             const token = await generateToken({
-                id: dataValues.id, 
-                first_name: dataValues.first_name, 
-                last_name: dataValues.last_name,
-                email
+                user: dataValues.id, email
             });
-            localStorage.setItem('token', token);
+
             return res.status(200).json({ message: 'You\'re successfully logged in.', token });
 
         } catch (err) {
-            return res.status(500).json({ message: err.message })
+            if(err){
+                return res.status(500).json({ error: 'Internal Server Error' })
+            }
         }
     }
 
@@ -66,11 +71,12 @@ class UserController {
                 });
             } else {
                 const token = generateToken({id: existingUser.id, email});
-                localStorage.setItem('token',token)
                 return res.status(200).json({message: 'Success', token})
             }
         } catch (err) {
-            return res.status(500).json(err);
+            if(err){
+                return res.status(500).json({error: 'Internal Server Error'});
+            }
         }
 
     }
@@ -79,20 +85,22 @@ class UserController {
     static async resetPassword(req, res){
 
         try{
-            // const retrievedToken = localStorage.getItem('token')
-        const payload = req.headers.token;
+
+        const payload = req.params.token;
         const decodedPayload = decodeToken(payload)
-        const {password, confirmPassword } = req.body;
+        const { password, confirmPassword } = req.body;
 
         if( confirmPassword !== password){
-            return res.status(422).json({message: 'Sorry! the confirm passwords didn\'t match.'})
+            return res.status(422).json({error: 'Sorry! passwords didn\'t match.'})
         }else {
             const hashedPassword = await passwordManager.encryptor(password, 10)
             await models.User.update({password: hashedPassword}, {where: {email: decodedPayload.email}})
             return res.status(200).json({message: 'Password successfully reset'})
         }
         }catch(err){
-            return res.status(500).json({error: err.message})
+            if(err){
+                return res.status(500).json({err: err.message})
+            }
         }
 
     }

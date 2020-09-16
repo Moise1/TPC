@@ -8,8 +8,8 @@ export const route = express();
 
 route.post('/signup', UserController.signUp);
 route.post('/login', UserController.Login);
-route.post('/reset-password-request', UserController.requestPasswordReset);
-route.patch('/reset-password-done', UserController.resetPassword);
+route.post('/request-password-reset', UserController.requestPasswordReset);
+route.put('/complete-password-reset-process/:token', UserController.resetPassword);
 
 // Report's routes;
 

@@ -1,0 +1,17 @@
+/* Mobile screen size */
+
+@media(max-width: 576px){
+
+    .table-container {
+        margin-top: 20%
+    }
+}
+
+/* Laptop screen size */
+
+@media(min-width: 500px){
+
+    .table-container {
+        margin-top: 10%
+    }
+}
