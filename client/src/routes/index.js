@@ -5,9 +5,13 @@ import LoginForm from '../components/LoginForm';
 import ResetPasswordRequest from '../components/RequestPasswordReset';
 import ResetPassword from '../components/ResetPassword';
 import RedirectPage from '../components/RedirectPage';
-import NewReport from '../components/NewReport';
+import NewReport from '../components/NewReport.js';
+import AdminDashboard from '../components/Dashboard/AdminDashboard';
+import SuccessfulReport from '../components/Success';
+import DisplaySingleReport from '../components/DisplaySingleReport';
 
-export const IndexRoute = props =>{
+export const IndexRoute = props => {
+    
     return (
         <Switch>
             <Route   path="/" exact component={SignUpForm}/>
@@ -15,7 +19,10 @@ export const IndexRoute = props =>{
             <Route   path="/request-password-reset" exact component={ResetPasswordRequest}/>
             <Route   path="/complete-password-reset-process/:token" exact component={ResetPassword}/>
             <Route   path="/redirect" exact component={RedirectPage}/>
-            <Route   path="/new-report" exact component={NewReport}/>
+            <Route   path="/create-report" exact component={NewReport}/>
+            <Route   path="/get-report/:id" exact component={DisplaySingleReport}/>
+            <Route   path="/success" exact component={SuccessfulReport}/>
+            <Route   path="/admin-dashboard" exact component={AdminDashboard} />
         </Switch>
     )
 }

@@ -11,12 +11,17 @@ class UserController {
             const hashedPassword = await passwordManager.encryptor(password, 10)
             const existingUser = await models.User.findOne({ where: { email } });
             const role = 'regular_staff';
+
             if (existingUser !== null) {
                 return res.status(409).json({ error: 'Sorry! Email already taken.' });
             } else {
                 const {dataValues} = await models.User.create({ first_name, email, last_name, password: hashedPassword, role });
                 const token = generateToken({
-                    email: dataValues.id, first_name, last_name, email, role
+                    id: dataValues.id, 
+                    first_name, 
+                    last_name,
+                    email,
+                    role
                 });
     
                 const data = {
@@ -28,7 +33,7 @@ class UserController {
 
         } catch (err) {
             if(err){
-                return res.status(500).json({ error: 'Internal Server Error' })
+                return res.status(500).json({ error: err.message})
             }
         }
     }
@@ -39,22 +44,25 @@ class UserController {
             const { email, password } = req.body;
 
             const {dataValues} = await models.User.findOne({ where: { email } });
-            if (dataValues === null) {
+            if (dataValues === null) {  
                 return res.status(404).json({ error: 'Sorry! User with this email doesn\'t exist.' })
             };
             const passwordMatch = await passwordManager.matchChecker(password, dataValues.password)
             if (!passwordMatch) {
-                return res.status(403).json({ error: 'Sorry! wrong password.' })
+                return res.status(403).json({ error: 'Sorry! Wrong password.' })
             };
             const token = await generateToken({
-                user: dataValues.id, email
+                id: dataValues.id, 
+                email,
+                first_name: dataValues.first_name, 
+                last_name: dataValues.last_name
             });
 
             return res.status(200).json({ message: 'You\'re successfully logged in.', token });
 
         } catch (err) {
             if(err){
-                return res.status(500).json({ error: 'Internal Server Error' })
+                return res.status(500).json({ error: err.message })
             }
         }
     }
@@ -65,6 +73,7 @@ class UserController {
         try {
 
             const existingUser = await models.User.findOne({ where: { email } });
+            
             if (!existingUser) {
                 return res.status(404).json({
                     error: 'Sorry! This email doesn\'t exist.',
@@ -75,7 +84,7 @@ class UserController {
             }
         } catch (err) {
             if(err){
-                return res.status(500).json({error: 'Internal Server Error'});
+                return res.status(500).json({error: err.message});
             }
         }
 
@@ -103,6 +112,18 @@ class UserController {
             }
         }
 
+    }
+
+    static async Logout(req, res){
+
+        try {
+            req.logout();
+            res.redirect('/');
+        } catch (error) {
+            if(error){
+                return res.status(500).json({err: error.message})
+            }
+        }
     }
 }
 

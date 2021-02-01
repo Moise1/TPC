@@ -2,7 +2,7 @@ import * as actionTypes from '../types';
 
 const initialState = {
     loading: 'none',
-    user: [],
+    user: {},
     error: '',
     open: false
 }
@@ -28,7 +28,7 @@ export const signupReducer = (state = initialState, action) => {
                 ...state,
                 loading: 'none',
                 open: true,
-                error: action.payload,
+                error: action.error,
             }
         case actionTypes.CLOSE_MESSAGE:
             return {

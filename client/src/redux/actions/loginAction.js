@@ -8,7 +8,8 @@ export const loginAction = (data, history) => async (dispatch) => {
         const {message, token} = await res.data;
         localStorage.setItem('token', token);
         dispatch(loginSuccess({data: message, token }));
-        history.push({pathname: '/new-report'});
+        history.push({pathname: '/create-report'});
+        
     } catch (err) {
         if (err.response) {
             const errorMessage = await err.response.data.error;
@@ -35,7 +36,7 @@ export const loginSuccess = userData => {
 export const loginFailure = error => {
     return {
         type: actionTypes.LOGIN_FAILED,
-        payload: error
+        error
     }
 }
 

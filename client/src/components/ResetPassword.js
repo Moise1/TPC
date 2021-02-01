@@ -47,7 +47,6 @@ const ResetPassword = props => {
         password: userInfo.password,
         confirmPassword: userInfo.confirmPassword
       }
-      // const token = decodeToken(props.match.params.token.email)
       const {token} = props.match.params;
       await props.passwordResetDone(resetPassword, token, props.history)
     }

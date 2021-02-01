@@ -8,9 +8,12 @@ export const route = express();
 
 route.post('/signup', UserController.signUp);
 route.post('/login', UserController.Login);
+route.get('/logout', UserController.Logout);
 route.post('/request-password-reset', UserController.requestPasswordReset);
 route.put('/complete-password-reset-process/:token', UserController.resetPassword);
 
 // Report's routes;
-
-route.post('/new-report', ReportController.createReport)
+route.get('/new-report', ReportController.allReports);
+route.post('/new-report', ReportController.createReport);
+route.get('/get-report/:id', ReportController.getOneReport)
+route.patch('/new-report/:id', ReportController.updateColumn);
