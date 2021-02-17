@@ -1,5 +1,4 @@
 import React, { useEffect} from 'react';
-import clsx from 'clsx';
 import {reportDrawerStyles} from '../StyledComponents'
 import {
     Drawer,
@@ -32,7 +31,7 @@ const ReportDrawer = props => {
                     paper: classes.drawerPaper,
                 }}
             >
-                <div className={clsx(classes.container)}>
+                <div className={classes.container}>
                     <List>
                         {
                             reports.map(report => { 

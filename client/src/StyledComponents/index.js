@@ -182,5 +182,8 @@ export const reportDrawerStyles = makeStyles(theme => ({
     bottom: 0,
     zIndex: 100,
     backgroundColor: "#f4f7f9"
+  },
+  selectedBackground: {
+    backgroundColor: 'rgba(255, 255, 255, 0.12)',
   }
 }))

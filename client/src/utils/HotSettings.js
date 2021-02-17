@@ -1,5 +1,6 @@
 import axios from 'axios';
 import lodash from 'lodash';
+import {repositionElements} from './repositionEls';
 
 const colHeaders = [
 
@@ -48,9 +49,11 @@ export const hotSettings = {
     afterChange: async function (change, src) {
         // restore table after reload of a page
         const currentReportId = window.location.pathname.split('/')[2];
-        if (currentReportId) {
+        if (src === "loadData" && currentReportId) {
             const singleReportData = await axios.get(`/get-report/${parseInt(currentReportId)}`);
-            const newReportData = new Array(Object.values(lodash.omit(singleReportData.data, ['id', 'userId', 'createdAt, updatedAt'])));
+            let newArrayFromObject = Object.values(lodash.omit(singleReportData.data, ['id', 'userId', 'createdAt', 'updatedAt']))
+            repositionElements(newArrayFromObject, 23, 14)
+            const newReportData = new Array(newArrayFromObject);
             this.loadData(newReportData)
             this.render();
             return;
@@ -59,7 +62,6 @@ export const hotSettings = {
             // load data from local storage
             if (localStorage['data']) {
                 const data = JSON.parse(localStorage['data']);
-                console.log("PARSED REPORT DATA", data);
                 this.loadData(data);
                 this.render();
                 return;
