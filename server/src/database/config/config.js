@@ -16,10 +16,13 @@ const config= {
   production: {
     use_env_variable: 'DATABASE_URL',
     dialect: 'postgres',
+    protocol: 'postgres',
     logging: false,
-    dialectOptions: {
-      ssl: tthis ? { rejectUnauthorized: false } : false,
-    },
+    dialectOptions: { ssl: {
+      require: true,
+      rejectUnauthorized: false
+    } },
+
   },
 }
 
