@@ -18,7 +18,7 @@ const config= {
     dialect: 'postgres',
     logging: false,
     dialectOptions: {
-      ssl: true,
+      ssl: tthis ? { rejectUnauthorized: false } : false,
     },
   },
 }
