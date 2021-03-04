@@ -88,7 +88,7 @@ const LoginForm = props => {
   return (
     <div className="container login-page mb-5">
       {props.loginState.loading === 'block' ? (
-        <div className="justify-content-center">
+        <div className="circular-progress-container">
           <CircularProgress
             value={25}
             className="circular-progress" />

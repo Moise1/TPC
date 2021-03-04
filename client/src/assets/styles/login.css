@@ -7,6 +7,11 @@ body{
     color: #1A5276;
 }
 
+.circular-progress-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 /* Mobile view screren */
 

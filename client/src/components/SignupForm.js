@@ -102,7 +102,7 @@ const SignUpForm = props => {
     return (
         <div className="container signup-page mb-5">
             {props.signupState.loading === 'block' ? (
-                <div className="justify-content-center">
+                <div className="circular-progress-container">
                     <CircularProgress
                         value={25}
                         className="circular-progress" />

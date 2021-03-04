@@ -43,7 +43,8 @@ class UserController {
         try {
             const { email, password } = req.body;
 
-            const {dataValues} = await models.User.findOne({ where: { email } });
+            const dataValues = await models.User.findOne({ where: { email } });
+            
             if (dataValues === null) {  
                 return res.status(404).json({ error: 'Sorry! User with this email doesn\'t exist.' })
             };
