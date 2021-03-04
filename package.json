@@ -8,8 +8,9 @@
     "server": "babel-watch ./server/server.js",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\"  \"npm run client \"",
+    "prod-db": "sequelize db:migrate:undo:all && sequelize db:migrate",
     "heroku-postbuild": "cd client && npm install && npm run build",
-    "prod": "npm run db-migrate && npm run server"
+    "prod": "npm run prod-db && npm run server"
   },
   "keywords": [
     "nodejs",
