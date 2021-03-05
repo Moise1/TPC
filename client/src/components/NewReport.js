@@ -1,19 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { HotTable } from '@handsontable/react';
 import "../assets/styles/new-report.css";
-import {hotSettings} from '../utils/HotSettings';
-import { Button } from 'react-bootstrap';
+import { hotSettings } from '../utils/HotSettings';
+import { Button } from '@material-ui/core';
 import * as actions from '../redux/actions/newReport';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
 import { tokenDecoder } from '../helpers/manageToken';
-import ReportDrawer from './ReportDrawer';
+import {ConfirmAlert} from './ConfirmAlert';
+
 
 const NewReport = props => {
 
+
     const token = localStorage.getItem('token');
     const decodedToken = tokenDecoder(token);
-    const {id: userId } = decodedToken; 
+    const { id: userId } = decodedToken;
+
+
 
     const handleSaveData = () => {
 
@@ -51,19 +55,16 @@ const NewReport = props => {
     }
 
     return (
-        <div className="container-fluid table-container">
-            <ReportDrawer/>
+        <div className="table-container">
             <h3 className="text-center report-title">Create Your Report</h3>
             <HotTable
                 className="report-table"
-                id="handson-table"
+                id="handson-table"  
                 settings={hotSettings}
             />
-            <div className="action-btns mt-5 row justify-content-md-center">
-                <Button className="btn btn-danger">Reset</Button>
-                <Button type="submit" className="btn btn-primary ml-3" >Update</Button>
-                <Button type="submit" className="btn btn-success ml-3" onClick={handleSaveData}>Save</Button>
-
+            <div className="action-btns">
+                <Button type="button" onClick={ConfirmAlert} color="secondary" variant="contained">Reset</Button>
+                <Button type="submit" onClick={handleSaveData} className="ml-3" color="primary" variant="contained">Save</Button>
             </div>
         </div>
     )

@@ -8,6 +8,8 @@ import App from './App';
 import { Provider } from 'react-redux'
 import { store } from '../src/redux/store'
 import "@silevis/reactgrid/styles.css";
+import 'react-confirm-alert/src/react-confirm-alert.css';
+
 
 
 ReactDOM.render(

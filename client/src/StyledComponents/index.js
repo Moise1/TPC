@@ -4,7 +4,8 @@ import { TextField, OutlinedInput } from '@material-ui/core';
 const drawerWidth = 240;
 export const minDrawerWidth = 50;
 export const maxDrawerWidth = 1000;
-export const drawerPaperWidth = 260
+export const drawerPaperWidth = 270;
+
 export const CustomStyles = makeStyles((theme) => ({
     root: {
       display: 'flex',
@@ -161,7 +162,12 @@ export const reportDrawerStyles = makeStyles(theme => ({
   drawerPaper: {
     width: drawerPaperWidth,
     marginTop: 91,
-    border: '2px solid #ccc'
+    border: '2px solid #ccc',
+    overflwoY: 'scroll'
+  },
+  noReportsText: {
+    fontsize: '17px',
+    marginLeft: '20px'
   },
   drawerContainer: {
     overflow: 'auto',
@@ -187,3 +193,16 @@ export const reportDrawerStyles = makeStyles(theme => ({
     backgroundColor: 'rgba(255, 255, 255, 0.12)',
   }
 }))
+
+export const resetModalStyles =  makeStyles(() => ({
+  
+  resetDialog: {
+    border: '3px solid blue',
+  },
+  warningText: {
+    color: '#000'
+  },
+  cardStyles: {
+    marginTop: "-30px"
+  }
+}));

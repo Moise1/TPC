@@ -68,7 +68,6 @@ export const hotSettings = {
             }
         } else {
             // save all data to local storage if the edit happens.
-            // const dataRow = this.getData();
             localStorage['data'] = JSON.stringify(this.getData());
         }
     }

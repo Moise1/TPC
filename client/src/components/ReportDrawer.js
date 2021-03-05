@@ -19,7 +19,7 @@ const ReportDrawer = props => {
     
     useEffect(() => {
         props.getAllReports()
-    }, [props.getAllReports])
+    }, [])
 
     const { reports } = props.allReports;
     return (
@@ -34,6 +34,7 @@ const ReportDrawer = props => {
                 <div className={classes.container}>
                     <List>
                         {
+                            reports.length === 0 ? (<p className={classes.noReportsText}>No reports available yet.</p>) : 
                             reports.map(report => { 
                                 const truncatedText = (textInput) => {
                                     return textInput.length > 15 ? `${textInput.substring(0, 15)}...` : textInput

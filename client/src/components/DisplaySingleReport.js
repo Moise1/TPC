@@ -4,7 +4,9 @@ import "../assets/styles/single-report.css";
 import ReportDrawer from './ReportDrawer';
 import { hotSettings } from '../utils/HotSettings';
 import lodash from 'lodash';
-import {withRouter} from 'react-router-dom'
+import {withRouter} from 'react-router-dom';
+import {Button} from '@material-ui/core';
+
 
 
 class DisplaySingleReport extends React.Component {
@@ -22,12 +24,10 @@ class DisplaySingleReport extends React.Component {
                     id="handson-table"
                     settings={modifiedSettings}
                 />
-                {/* 
+            
                     <div className="action-btns mt-5 row justify-content-md-center">
-                        <Button className="btn btn-danger">Reset</Button>
                         <Button type="submit" className="btn btn-primary ml-3" >Update</Button>
-                    </div> */
-                }
+                    </div> 
             </div>
         )
     }

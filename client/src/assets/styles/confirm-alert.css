@@ -1,0 +1,25 @@
+.confirm-alert {
+    border: 3px solid green;
+    border-radius: 5px;
+    padding: 2rem;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.confirm-alert .action-btns *{
+    border-radius: 3px;
+}
+
+.confirm-alert .action-btns .reset-btn{
+    margin-left: 2rem;
+    color: #fff;
+    background-color: red;
+}
+
+.confirm-alert .action-btns .cancel-btn{
+    color: #fff;
+    background-color: black;
+}
